@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta name="robots" content="noindex">
+	<title>game</title>
+	<meta charset="utf-8">
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+	<script src="util.js"></script>
+	<script src="fileManager.js"></script>
+	<script src="mouse.js"></script>
+	<script src="program.js"></script>
+
+	<style>
+		html, body {
+			background-color: #111;
+			color: #ddd;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			text-align: center;
+		}
+		body {
+			margin:0px;padding:0px; overflow: auto;
+		}
+
+		#mainDiv {
+			background-color: #000;
+			font-family: "ヒラギノ角ゴ Pro W3",メイリオ,Osaka,Arial,Verdana,"ＭＳ Ｐゴシック",sans-serif;
+			width:880px;
+			margin: 0 auto;
+			margin-top: 0em;
+			margin-bottom: 1em;
+			text-align: left;
+			padding: 20px 40px 50px 40px;
+			line-height: 180%;
+			letter-spacing: 0.08em;
+		}
+		
+		#canvasContainer {
+			margin: 1em auto;
+		}		
+	</style>
+</head>
+<body>
+	<div id="canvasContainer">
+		<canvas id="myCanvas" width="480" height="480"></canvas>
+	</div>
+</body>
+</html>
