@@ -57,7 +57,12 @@ onload = function(){
 		//更新メソッド
 		if(!bool && fileGroup.loaded){
 			bmp = new createjs.Bitmap(fileGroup.getResult("fig"));
-			stage.addChild(bmp);
+
+			var bounds = bmp.getBounds();
+			console.log(bounds.x + " " + bounds.y + " " + bounds.width + " " + bounds.height);
+			console.log(bmp.image);
+
+
 			bool = true;
 		}
 
