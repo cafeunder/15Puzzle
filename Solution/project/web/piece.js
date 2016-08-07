@@ -5,6 +5,7 @@ function Piece(gx, gy, xNum, yNum, id, bitmap){
 	this.xNum = xNum;
 	this.yNum = yNum;
 	this.id = id;
+	this.blank = false;
 
 	this.view = new __PieceView(bitmap);
 	this.view.update(this);
@@ -12,6 +13,11 @@ function Piece(gx, gy, xNum, yNum, id, bitmap){
 
 Piece.prototype.slide = function(dir){
 	this.__p.moveDir(dir, this.xNum, this.yNum);
+	this.view.update(this);
+}
+
+Piece.prototype.setBlank = function(flag){
+	this.blank = flag;
 	this.view.update(this);
 }
 
@@ -29,4 +35,8 @@ function __PieceView(bitmap){
 __PieceView.prototype.update = function(piece){
 	this.bitmap.x = piece.__p.x * this.bmpWidth;
 	this.bitmap.y = piece.__p.y * this.bmpHeight;
+
+	if(piece.blank){
+		this.bitmap.visible = false;
+	}
 }

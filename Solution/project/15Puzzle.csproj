@@ -51,6 +51,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="web\board.js" />
     <Content Include="web\cjsUtil.js" />
     <Content Include="web\fileManager.js" />
     <Content Include="web\index.html" />

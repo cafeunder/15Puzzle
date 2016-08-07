@@ -62,6 +62,9 @@ onload = function(){
 			console.log(bounds.x + " " + bounds.y + " " + bounds.width + " " + bounds.height);
 			console.log(bmp.image);
 
+			var board = new Board(bmp, 4, 4, stage);
+
+			/*
 			var xNum = 4;
 			var yNum = 4;
 			var clip = clipBitmap(bmp, 0, 0, parseInt(bounds.width/xNum), parseInt(bounds.height/yNum));
@@ -71,6 +74,7 @@ onload = function(){
 
 			piece.slide(POINT_RIGHT);
 			piece.slide(POINT_DOWN);
+			*/
 
 			bool = true;
 		}
