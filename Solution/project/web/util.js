@@ -141,6 +141,36 @@ Point.prototype.equal = function(p){
 	return (this.x == p.x && this.y == p.y);
 }
 
+Point.prototype.moveDir = function(d, xNum, yNum){
+	switch(d){
+	case POINT_UP:
+		if(this.y-1 >= 0 && this.y-1 < yNum){
+			this.y--;
+			return true;
+		}
+		break;
+	case POINT_DOWN:
+		if(this.y+1 >= 0 && this.y+1 < yNum){
+			this.y++;
+			return true;
+		}
+		break;
+	case POINT_LEFT:
+		if(this.x-1 >= 0 && this.x-1 < xNum){
+			this.x--;
+			return true;
+		}
+		break;
+	case POINT_RIGHT:
+		if(this.x+1 >= 0 && this.x+1 < xNum){
+			this.x++;
+			return true;
+		}
+		break;
+	}
+	return false;
+}
+
 function dirPoint(p, d, xNum, yNum){
 	switch(d){
 	case POINT_UP:

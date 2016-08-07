@@ -55,6 +55,7 @@
     <Content Include="web\fileManager.js" />
     <Content Include="web\index.html" />
     <Content Include="web\mouse.js" />
+    <Content Include="web\piece.js" />
     <Content Include="web\program.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
