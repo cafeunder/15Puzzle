@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-function Board(picture, xNum, yNum, stage){
+function Board(picture, xNum, yNum){
 	this.xNum = xNum;
 	this.yNum = yNum;
 
@@ -17,8 +17,6 @@ function Board(picture, xNum, yNum, stage){
 		var clip = clipBitmap(picture, cw*x, ch*y, cw, ch);
 		//ピースを生成
 		this.__pieces[i] = new Piece(x, y, xNum, yNum, i, clip);
-		//ピースの画像をステージに追加
-		stage.addChild(clip);
 	}
 
 	//右下のピースは空きとする（クリア時に表示するので画像は保持してもらう）

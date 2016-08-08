@@ -2,29 +2,29 @@
 
 //キャンバスの横幅と縦幅
 var STAGE_HEIGHT, STAGE_WIDTH;
-//読み込みが完了したか？
-var loadComplete = false;
+//
+var gStage;
 
 onload = function(){
 	//ステージの生成（引数はキャンバスID）
-	var stage = new createjs.Stage("myCanvas");
+	gStage = new createjs.Stage("myCanvas");
 
 	//マウスオブジェクトの生成（以下をセットで呼び出すこと）
-	MouseInitialize(stage);
+	MouseInitialize(gStage);
 
 	//タッチデバイスかどうか
 	if(createjs.Touch.isSupported() == true){
 		//タッチデバイスの有効化（引数はステージオブジェクト）
-		createjs.Touch.enable(stage)
+		createjs.Touch.enable(gStage)
 	} else {
 		//マウスオーバーを有効にする
 		//マルチデバイスではあまり推奨されない
-		stage.enableMouseOver();
+		gStage.enableMouseOver();
 	}
 	
 	//ステージの横幅と縦幅の取得
-	STAGE_WIDTH = stage.canvas.width;
-	STAGE_HEIGHT = stage.canvas.height;
+	STAGE_WIDTH = gStage.canvas.width;
+	STAGE_HEIGHT = gStage.canvas.height;
 
 	//=====背景の生成=====//
 	//シェイプオブジェクトの生成
@@ -34,11 +34,11 @@ onload = function(){
 	//四角形とする（引数はx,y,width,height）
 	backGround.graphics.drawRect(0, 0, STAGE_WIDTH, STAGE_HEIGHT);
 	//ステージに追加
-	stage.addChild(backGround);
+	gStage.addChild(backGround);
 
 	//fps表示
 	var fpsLabel = new createjs.Text("-- fps", "bold 18px Arial", "#000");
-	stage.addChild(fpsLabel);
+	gStage.addChild(fpsLabel);
 
 	//FPSベース
 	createjs.Ticker.setFPS(30);
@@ -62,19 +62,7 @@ onload = function(){
 			console.log(bounds.x + " " + bounds.y + " " + bounds.width + " " + bounds.height);
 			console.log(bmp.image);
 
-			var board = new Board(bmp, 4, 4, stage);
-
-			/*
-			var xNum = 4;
-			var yNum = 4;
-			var clip = clipBitmap(bmp, 0, 0, parseInt(bounds.width/xNum), parseInt(bounds.height/yNum));
-
-			var piece = new Piece(0, 0, xNum, yNum, 0, clip);
-			stage.addChild(clip);
-
-			piece.slide(POINT_RIGHT);
-			piece.slide(POINT_DOWN);
-			*/
+			var board = new Board(bmp, 4, 4);
 
 			bool = true;
 		}
@@ -82,7 +70,7 @@ onload = function(){
 		//fps計測
 		fpsLabel.text = Math.round(createjs.Ticker.getMeasuredFPS());
 
-		stage.update();
+		gStage.update();
 	});
 };
 

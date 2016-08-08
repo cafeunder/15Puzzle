@@ -30,11 +30,23 @@ function __PieceView(bitmap){
 	var bounds = bitmap.getBounds();
 	this.bmpWidth = bounds.width;
 	this.bmpHeight = bounds.height;
+
+	this.frame = new createjs.Shape();
+	this.frame.graphics.setStrokeStyle(2);
+	this.frame.graphics.beginStroke("#fff");
+	this.frame.graphics.drawRect(0, 0, this.bmpWidth, this.bmpHeight);
+
+	gStage.addChild(this.bitmap);
+	gStage.addChild(this.frame);
 }
 
 __PieceView.prototype.update = function(piece){
-	this.bitmap.x = piece.__p.x * this.bmpWidth;
-	this.bitmap.y = piece.__p.y * this.bmpHeight;
+	var gx = piece.__p.x * this.bmpWidth;
+	var gy = piece.__p.y * this.bmpHeight;
+	this.bitmap.x = gx;
+	this.bitmap.y = gy;
+	this.frame.x = gx;
+	this.frame.y = gy;
 
 	if(piece.blank){
 		this.bitmap.visible = false;
