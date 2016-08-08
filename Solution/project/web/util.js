@@ -191,26 +191,26 @@ Point.prototype.calcDirectionTo = function(p){
 	return null;
 }
 
-function dirPoint(p, d, xNum, yNum){
+Point.prototype.dirPoint = function(d, xNum, yNum){
 	switch(d){
 	case POINT_UP:
-		if(p.y-1 >= 0 && p.y-1 < yNum){
-			return new Point(p.x, p.y-1);
+		if(this.y-1 >= 0 && this.y-1 < yNum){
+			return new Point(this.x, this.y-1);
 		}
 		break;
 	case POINT_DOWN:
-		if(p.y+1 >= 0 && p.y+1 < yNum){
-			return new Point(p.x, p.y+1);
+		if(this.y+1 >= 0 && this.y+1 < yNum){
+			return new Point(this.x, this.y+1);
 		}
 		break;
 	case POINT_LEFT:
-		if(p.x-1 >= 0 && p.x-1 < xNum){
-			return new Point(p.x-1, p.y);
+		if(this.x-1 >= 0 && this.x-1 < xNum){
+			return new Point(this.x-1, this.y);
 		}
 		break;
 	case POINT_RIGHT:
-		if(p.x+1 >= 0 && p.x+1 < xNum){
-			return new Point(p.x+1, p.y);
+		if(this.x+1 >= 0 && this.x+1 < xNum){
+			return new Point(this.x+1, this.y);
 		}
 		break;
 	}
