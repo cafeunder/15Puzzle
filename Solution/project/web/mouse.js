@@ -1,10 +1,10 @@
 ﻿"use strict";
 
-var mouse;
+var gMouse;
 function MouseInitialize(stage){
-	mouse = new Mouse(stage);
-	stage.on("mousedown", function(){ mouse.mouseDown(); });
-	stage.on("pressup", function(){ mouse.mouseUp(); });
+	gMouse = new Mouse(stage);
+	stage.on("mousedown", function(){ gMouse.mouseDown(); });
+	stage.on("pressup", function(){ gMouse.mouseUp(); });
 }
 
 function Mouse(stage){

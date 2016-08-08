@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 function Piece(gx, gy, xNum, yNum, id, bitmap){
-	this.__p = new Point(gx, gy);
+	this.point = new Point(gx, gy);
 	this.xNum = xNum;
 	this.yNum = yNum;
 	this.id = id;
@@ -12,7 +12,7 @@ function Piece(gx, gy, xNum, yNum, id, bitmap){
 }
 
 Piece.prototype.slide = function(dir){
-	this.__p.moveDir(dir, this.xNum, this.yNum);
+	this.point.moveDir(dir, this.xNum, this.yNum);
 	this.view.update(this);
 }
 
@@ -41,8 +41,8 @@ function __PieceView(bitmap){
 }
 
 __PieceView.prototype.update = function(piece){
-	var gx = piece.__p.x * this.bmpWidth;
-	var gy = piece.__p.y * this.bmpHeight;
+	var gx = piece.point.x * this.bmpWidth;
+	var gy = piece.point.y * this.bmpHeight;
 	this.bitmap.x = gx;
 	this.bitmap.y = gy;
 	this.frame.x = gx;

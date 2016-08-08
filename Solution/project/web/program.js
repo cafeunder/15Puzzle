@@ -48,23 +48,28 @@ onload = function(){
 	fileGroup.load();
 
 	//タイマーイベント
-	var bool = false;
+	var initialized = false;
 	var bmp = null;
+	var board;
 	createjs.Ticker.on("tick", function () {
 		//mouseアップデート
-		mouse.update();
+		gMouse.update();
 
 		//更新メソッド
-		if(!bool && fileGroup.loaded){
-			bmp = new createjs.Bitmap(fileGroup.getResult("fig"));
+		if(fileGroup.loaded){
+			if(!initialized){
+				bmp = new createjs.Bitmap(fileGroup.getResult("fig"));
 
-			var bounds = bmp.getBounds();
-			console.log(bounds.x + " " + bounds.y + " " + bounds.width + " " + bounds.height);
-			console.log(bmp.image);
+				var bounds = bmp.getBounds();
+				console.log(bounds.x + " " + bounds.y + " " + bounds.width + " " + bounds.height);
+				console.log(bmp.image);
 
-			var board = new Board(bmp, 4, 4);
+				board = new Board(bmp, 4, 4);
 
-			bool = true;
+				initialized = true;
+			}
+			
+			board.update();
 		}
 
 		//fps計測

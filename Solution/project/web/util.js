@@ -137,7 +137,7 @@ Point.prototype.clone = function(){
 	return new Point(this.x, this.y);
 }
 
-Point.prototype.equal = function(p){
+Point.prototype.equals = function(p){
 	return (this.x == p.x && this.y == p.y);
 }
 
@@ -171,6 +171,26 @@ Point.prototype.moveDir = function(d, xNum, yNum){
 	return false;
 }
 
+Point.prototype.calcDirectionTo = function(p){
+	var dx = this.x - p.x;
+	var dy = this.y - p.y;
+
+	if(dx == -1 && dy == 0){
+		return POINT_RIGHT;
+	}
+	if(dx == 1 && dy == 0){
+		return POINT_LEFT;
+	}
+	if(dy == -1 && dx == 0){
+		return POINT_DOWN;
+	}
+	if(dy == 1 && dx == 0){
+		return POINT_UP;
+	}
+
+	return null;
+}
+
 function dirPoint(p, d, xNum, yNum){
 	switch(d){
 	case POINT_UP:
@@ -195,4 +215,17 @@ function dirPoint(p, d, xNum, yNum){
 		break;
 	}
 	return null;
+}
+
+function opposite(dir){
+	switch(dir){
+	case POINT_UP:
+		return POINT_DOWN;
+	case POINT_DOWN:
+		return POINT_UP;
+	case POINT_LEFT:
+		return POINT_RIGHT;
+	case POINT_RIGHT:
+		return POINT_LEFT;
+	}
 }
