@@ -1,6 +1,11 @@
 ﻿"use strict";
 
-function Board(picture, xNum, yNum){
+function Board(picture, xNum, yNum, containerDepth){
+	//ボードのオブジェクトを管理するコンテナを作成
+	this.__container = new createjs.Container();
+	gStage.addChild(this.__container);
+	gStage.setChildIndex(this.__container, containerDepth);
+
 	//ボードのサイズ
 	this.xNum = xNum;
 	this.yNum = yNum;
@@ -24,7 +29,8 @@ function Board(picture, xNum, yNum){
 		//一枚絵から画像を切り取る
 		var clip = clipBitmap(picture, this.clipWidth*x, this.clipHeight*y, this.clipWidth, this.clipHeight);
 		//ピースを生成
-		this.__pieces[i] = new Piece(x, y, xNum, yNum, i, clip);
+		var view = new PieceView(clip, this.__container);
+		this.__pieces[i] = new Piece(x, y, xNum, yNum, i, view);
 		this.__linearPointToID[i] = i;
 	}
 
@@ -33,9 +39,13 @@ function Board(picture, xNum, yNum){
 	this.__pieces[this.blankID].setBlank(true);
 
 	//シャッフル
-	this.shuffle(50);
+	this.shuffle(100);
 	//任意。ゲーム開始時のブランク位置を固定するなら
 	this.setBlankLowerRight();
+}
+
+Board.prototype.finalize = function(){
+	gStage.removeChild(this.__container);
 }
 
 Board.prototype.update = function(){

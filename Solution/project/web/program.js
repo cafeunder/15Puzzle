@@ -2,15 +2,18 @@
 
 //キャンバスの横幅と縦幅
 var STAGE_HEIGHT, STAGE_WIDTH;
-//
+//グローバル宣言されたステージオブジェクト
 var gStage;
 
 onload = function(){
 	//ステージの生成（引数はキャンバスID）
 	gStage = new createjs.Stage("myCanvas");
 
-	//マウスオブジェクトの生成（以下をセットで呼び出すこと）
-	MouseInitialize(gStage);
+	//マウスオブジェクトの生成
+	mouseInitialize(gStage);
+	//キーボードオブジェクトの生成
+	keyboardInitialize();
+
 
 	//タッチデバイスかどうか
 	if(createjs.Touch.isSupported() == true){
@@ -26,7 +29,7 @@ onload = function(){
 	STAGE_WIDTH = gStage.canvas.width;
 	STAGE_HEIGHT = gStage.canvas.height;
 
-	//=====背景の生成=====//
+	//=====システム背景の生成=====//
 	//シェイプオブジェクトの生成
 	var backGround = new createjs.Shape();
 	//ぬりつぶす（引数は色）
@@ -54,6 +57,8 @@ onload = function(){
 	createjs.Ticker.on("tick", function () {
 		//mouseアップデート
 		gMouse.update();
+		//keyboardアップデート
+		gKeyboard.update();
 
 		//更新メソッド
 		if(fileGroup.loaded){
@@ -64,11 +69,11 @@ onload = function(){
 				console.log(bounds.x + " " + bounds.y + " " + bounds.width + " " + bounds.height);
 				console.log(bmp.image);
 
-				board = new Board(bmp, 4, 4);
+				board = new Board(bmp, 4, 4, 1);
 
 				initialized = true;
 			}
-			
+
 			board.update();
 		}
 

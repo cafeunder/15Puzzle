@@ -55,6 +55,7 @@
     <Content Include="web\cjsUtil.js" />
     <Content Include="web\fileManager.js" />
     <Content Include="web\index.html" />
+    <Content Include="web\keyboard.js" />
     <Content Include="web\mouse.js" />
     <Content Include="web\piece.js" />
     <Content Include="web\program.js" />

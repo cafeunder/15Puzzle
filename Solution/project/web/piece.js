@@ -1,13 +1,13 @@
 ﻿"use strict";
 
-function Piece(gx, gy, xNum, yNum, id, bitmap){
+function Piece(gx, gy, xNum, yNum, id, view){
 	this.point = new Point(gx, gy);
 	this.xNum = xNum;
 	this.yNum = yNum;
 	this.id = id;
 	this.blank = false;
 
-	this.view = new __PieceView(bitmap);
+	this.view = view;
 	this.view.update(this);
 }
 
@@ -24,7 +24,7 @@ Piece.prototype.setBlank = function(flag){
 //------------------------------------//
 //                View                //
 //------------------------------------//
-function __PieceView(bitmap){
+function PieceView(bitmap, container){
 	this.bitmap = bitmap;
 	
 	var bounds = bitmap.getBounds();
@@ -36,11 +36,11 @@ function __PieceView(bitmap){
 	this.frame.graphics.beginStroke("#fff");
 	this.frame.graphics.drawRect(0, 0, this.bmpWidth, this.bmpHeight);
 
-	gStage.addChild(this.bitmap);
-	gStage.addChild(this.frame);
+	container.addChild(this.bitmap);
+	container.addChild(this.frame);
 }
 
-__PieceView.prototype.update = function(piece){
+PieceView.prototype.update = function(piece){
 	var gx = piece.point.x * this.bmpWidth;
 	var gy = piece.point.y * this.bmpHeight;
 	this.bitmap.x = gx;

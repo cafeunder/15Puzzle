@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 var gMouse;
-function MouseInitialize(stage){
+function mouseInitialize(stage){
 	gMouse = new Mouse(stage);
 	stage.on("mousedown", function(){ gMouse.mouseDown(); });
 	stage.on("pressup", function(){ gMouse.mouseUp(); });
@@ -18,7 +18,6 @@ function Mouse(stage){
 Mouse.prototype.mouseDown = function(){
 	this.down = true;
 }
-
 Mouse.prototype.mouseUp = function(){
 	this.down = false;
 }
