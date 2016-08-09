@@ -44,6 +44,7 @@ function Board(picture, xNum, yNum, containerDepth){
 	this.setBlankLowerRight();
 }
 
+//デストラクタ
 Board.prototype.finalize = function(){
 	gStage.removeChild(this.__container);
 }
@@ -67,6 +68,7 @@ Board.prototype.update = function(){
 	}
 }
 
+//fromに指定されたピースを、dir方向へスライドするメソッド
 Board.prototype.swap = function(from, dir){
 	//fromから見たdir方向の位置を計算
 	var toPoint = from.point.dirPoint(dir, this.xNum, this.yNum);
@@ -84,6 +86,7 @@ Board.prototype.swap = function(from, dir){
 	to.slide(opposite(dir));
 }
 
+//盤面を指定回数シャッフルするメソッド
 Board.prototype.shuffle = function(num){
 	var blank = this.__pieces[this.blankID];
 	var movable = new Array(4);
@@ -122,6 +125,7 @@ Board.prototype.shuffle = function(num){
 	}
 }
 
+//ブランクを右下へ移動させるメソッド
 Board.prototype.setBlankLowerRight = function(){
 	var blank = this.__pieces[this.blankID];
 

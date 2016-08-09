@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-var fileManager = new FileManager();
+var gFileManager = new FileManager();
 //-------------------------------------//
 //             FileManager             //
 //-------------------------------------//
@@ -20,35 +20,42 @@ function FileManager(){
 	}
 }
 
+//指定されたグループの画像を読み込むメソッド
 FileManager.prototype.load = function(groupID){
 	halt(this.__fileGroup[groupID] == undefined);
 	this.__fileGroup[groupID].load();
 }
 
+//指定されたグループの画像を破棄するメソッド
 FileManager.prototype.unload = function(groupID){
 	halt(this.__fileGroup[groupID] == undefined);
 	this.__fileGroup[groupID].unload();
 }
 
+//指定されたグループが読み込み済みかを調べるメソッド
 FileManager.prototype.isLoaded = function(groupID){
 	halt(this.__fileGroup[groupID] == undefined);
 	return this.__fileGroup[groupID].loaded;
 }
 
-FileManager.prototype.getResult = function(groupID, fileID){
-	halt(this.__fileGroup[groupID] == undefined);
-	return this.__fileGroup[groupID].getResult(fileID);
-}
-
+//指定されたグループの読み込み進捗を返すメソッド
 FileManager.prototype.getProgress = function(groupID){
 	halt(this.__fileGroup[groupID] == undefined);
 	return this.__fileGroup[groupID].progress();
 }
 
+//グループIDとファイルIDを受け取ってFileオブジェクトを返すメソッド
+FileManager.prototype.getResult = function(groupID, fileID){
+	halt(this.__fileGroup[groupID] == undefined);
+	return this.__fileGroup[groupID].getResult(fileID);
+}
+
+//指定されたグループを返すメソッド
 FileManager.prototype.getGroup = function(groupID){
 	halt(this.__fileGroup[groupID] == undefined);
 	return this.__fileGroup[groupID];
 }
+
 
 //------------------------------------//
 //              FileGroup             //

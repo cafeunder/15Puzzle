@@ -48,7 +48,8 @@ onload = function(){
 	createjs.Ticker.setFPS(30);
 	createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
 
-	var fileGroup = fileManager.getGroup("main");
+	//ファイル読み込み
+	var fileGroup = gFileManager.getGroup("main");
 	fileGroup.load();
 
 	//タイマーイベント
@@ -65,10 +66,7 @@ onload = function(){
 		if(fileGroup.loaded){
 			if(!initialized){
 				bmp = new createjs.Bitmap(fileGroup.getResult("fig"));
-
 				var bounds = bmp.getBounds();
-				console.log(bounds.x + " " + bounds.y + " " + bounds.width + " " + bounds.height);
-				console.log(bmp.image);
 
 				board = new Board(bmp, 4, 4, 1);
 

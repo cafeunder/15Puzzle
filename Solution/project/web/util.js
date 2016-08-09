@@ -122,12 +122,13 @@ Queue.prototype.debugLog = function(){
 //------------------------------------//
 //                Point               //
 //------------------------------------//
+//上下左右を定義する定数
 var POINT_UP = 0;
 var POINT_RIGHT = 1;
 var POINT_DOWN = 2;
 var POINT_LEFT = 3;
 
-
+//離散空間におけるx,y座標をまとめて管理するクラス
 function Point(x,y){
 	this.x = x;
 	this.y = y;
@@ -141,28 +142,30 @@ Point.prototype.equals = function(p){
 	return (this.x == p.x && this.y == p.y);
 }
 
+//指定された方向へx,yを書き換えるメソッド
+//xNum, yNumは省略可
 Point.prototype.moveDir = function(d, xNum, yNum){
 	switch(d){
 	case POINT_UP:
-		if(this.y-1 >= 0 && this.y-1 < yNum){
+		if(this.y-1 >= 0){
 			this.y--;
 			return true;
 		}
 		break;
 	case POINT_DOWN:
-		if(this.y+1 >= 0 && this.y+1 < yNum){
+		if(yNum != undefined && this.y+1 < yNum){
 			this.y++;
 			return true;
 		}
 		break;
 	case POINT_LEFT:
-		if(this.x-1 >= 0 && this.x-1 < xNum){
+		if(this.x-1 >= 0){
 			this.x--;
 			return true;
 		}
 		break;
 	case POINT_RIGHT:
-		if(this.x+1 >= 0 && this.x+1 < xNum){
+		if(xNum != undefined && this.x+1 < xNum){
 			this.x++;
 			return true;
 		}
@@ -171,6 +174,7 @@ Point.prototype.moveDir = function(d, xNum, yNum){
 	return false;
 }
 
+//引数pが自身から見てどの方向にあるかを返すメソッド
 Point.prototype.calcDirectionTo = function(p){
 	var dx = this.x - p.x;
 	var dy = this.y - p.y;
@@ -191,25 +195,27 @@ Point.prototype.calcDirectionTo = function(p){
 	return null;
 }
 
+//自身から指定された方向を見たときの座標を返すメソッド
+//xNum, yNumは省略可
 Point.prototype.dirPoint = function(d, xNum, yNum){
 	switch(d){
 	case POINT_UP:
-		if(this.y-1 >= 0 && this.y-1 < yNum){
+		if(this.y-1 >= 0){
 			return new Point(this.x, this.y-1);
 		}
 		break;
 	case POINT_DOWN:
-		if(this.y+1 >= 0 && this.y+1 < yNum){
+		if(yNum != undefined && this.y+1 < yNum){
 			return new Point(this.x, this.y+1);
 		}
 		break;
 	case POINT_LEFT:
-		if(this.x-1 >= 0 && this.x-1 < xNum){
+		if(this.x-1 >= 0){
 			return new Point(this.x-1, this.y);
 		}
 		break;
 	case POINT_RIGHT:
-		if(this.x+1 >= 0 && this.x+1 < xNum){
+		if(xNum != undefined && this.x+1 < xNum){
 			return new Point(this.x+1, this.y);
 		}
 		break;
@@ -217,6 +223,7 @@ Point.prototype.dirPoint = function(d, xNum, yNum){
 	return null;
 }
 
+//方向を表す定数を受け取って、反対方向の定数を返すメソッド
 function opposite(dir){
 	switch(dir){
 	case POINT_UP:

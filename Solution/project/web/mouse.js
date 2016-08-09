@@ -7,6 +7,9 @@ function mouseInitialize(stage){
 	stage.on("pressup", function(){ gMouse.mouseUp(); });
 }
 
+//-------------------------------------//
+//                Mouse                //
+//-------------------------------------//
 function Mouse(stage){
 	this.down = false;
 	this.downFrame = 0;

@@ -17,7 +17,5 @@ function clipBitmap(bitmap, clipX, clipY, clipWidth, clipHeight){
 	context.drawImage(img, clipX, clipY, clipWidth, clipHeight, 0, 0, clipWidth, clipHeight);
 
 	//Bitmapを生成
-	var clip = new createjs.Bitmap(clipCanvas);
-
-	return clip;
+	return new createjs.Bitmap(clipCanvas);
 }

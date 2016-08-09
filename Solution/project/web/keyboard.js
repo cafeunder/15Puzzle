@@ -7,6 +7,9 @@ function keyboardInitialize(){
 	window.addEventListener("keyup", function(event){ gKeyboard.keyUp(event); });
 }
 
+//----------------------------------------//
+//                Keyboard                //
+//----------------------------------------//
 function Keyboard(){
 	this.__keyDownFlagList = new Array(256);
 	this.__keyCountList = new Array(256);
@@ -33,9 +36,12 @@ Keyboard.prototype.update = function(){
 	}
 }
 
+//キーコードを受け取って押されたフレーム数を返すメソッド
 Keyboard.prototype.getKeyCount = function(keycode){
 	return this.__keyCountList[keycode];
 } 
+
+
 
 //キーコード一覧（最低限のものだけ）
 var KEY_CODE_TAB = 9;
