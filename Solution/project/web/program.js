@@ -41,6 +41,7 @@ onload = function(){
 
 	//fps表示
 	var fpsLabel = new createjs.Text("-- fps", "bold 18px Arial", "#000");
+	fpsLabel.visible = false;
 	gStage.addChild(fpsLabel);
 
 	//FPSベース
@@ -75,6 +76,9 @@ onload = function(){
 			}
 
 			board.update();
+			if(gKeyboard.getKeyCount(KEY_CODE_F) == 1){
+				fpsLabel.visible = !fpsLabel.visible;
+			}
 		}
 
 		//fps計測

@@ -27,7 +27,6 @@ Keyboard.prototype.update = function(){
 	for(var i = 0; i < this.__keyCountList.length; i++){
 		if(this.__keyDownFlagList[i]){
 			this.__keyCountList[i]++;
-			console.log(i);
 		} else {
 			this.__keyCountList[i] = 0;
 		}
