@@ -5,6 +5,7 @@
 //-------------------------------------//
 //ピースを表すクラス
 function Piece(gx, gy, xNum, yNum, id, view){
+	this.__homePoint = new Point(gx, gy);
 	this.point = new Point(gx, gy);
 	this.xNum = xNum;
 	this.yNum = yNum;
@@ -25,6 +26,10 @@ Piece.prototype.slide = function(dir){
 Piece.prototype.setBlank = function(flag){
 	this.blank = flag;
 	this.view.update(this);
+}
+
+Piece.prototype.isCorrect = function(){
+	return this.point.equals(this.__homePoint);
 }
 
 //------------------------------------//

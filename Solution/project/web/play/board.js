@@ -3,6 +3,9 @@
 function Board(picture, xNum, yNum, container){
 	this.__container = container;
 
+	//動かした回数
+	this.noOfMove = 0;
+
 	//ボードのサイズ
 	this.xNum = xNum;
 	this.yNum = yNum;
@@ -51,8 +54,20 @@ Board.prototype.update = function(){
 		if(dir != null){
 			//ブランクとクリックしたピースをスライド
 			this.swap(this.__pieces[this.blankID], dir);
+			this.noOfMove++;
 		}
 	}
+
+	//クリア判定
+	var clear = true;
+	for(var i = 0; i < this.__pieces.length; i++){
+		if(!this.__pieces[i].isCorrect()){
+			clear = false;
+			break;
+		}
+	}
+
+	return clear;
 }
 
 //fromに指定されたピースを、dir方向へスライドするメソッド
@@ -110,6 +125,8 @@ Board.prototype.shuffle = function(num){
 		//スワップ
 		this.swap(blank, dir);
 	}
+
+	this.noOfMove = 0;
 }
 
 //ブランクを右下へ移動させるメソッド
