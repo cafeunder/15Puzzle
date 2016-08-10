@@ -48,9 +48,7 @@ onload = function(){
 	createjs.Ticker.setFPS(30);
 	createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
 
-	//ファイル読み込み
-	var fileGroup = gFileManager.getGroup("main");
-	fileGroup.load();
+	gSceneManager.change(new GamePlayScene());
 
 	//タイマーイベント
 	var initialized = false;
@@ -62,21 +60,10 @@ onload = function(){
 		//keyboardアップデート
 		gKeyboard.update();
 
-		//更新メソッド
-		if(fileGroup.loaded){
-			if(!initialized){
-				bmp = new createjs.Bitmap(fileGroup.getResult("fig"));
-				var bounds = bmp.getBounds();
+		gSceneManager.update();
 
-				board = new Board(bmp, 4, 4, 1);
-
-				initialized = true;
-			}
-
-			board.update();
-			if(gKeyboard.getKeyCount(KEY_CODE_F) == 1){
-				fpsLabel.visible = !fpsLabel.visible;
-			}
+		if(gKeyboard.getKeyCount(KEY_CODE_F) == 1){
+			fpsLabel.visible = !fpsLabel.visible;
 		}
 
 		//fps計測

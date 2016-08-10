@@ -1,14 +1,23 @@
 ﻿"use strict";
 
-//アサート判定してアラートを出すメソッド
-function halt(cond){
+//継承を表現する関数
+function Inherits(childCtor, parentCtor) {
+  Object.setPrototypeOf(childCtor.prototype, parentCtor.prototype);
+}
+
+//アサート判定してアラートを出す関数
+function halt(cond, message){
 	if(cond === true){
 		console.assert(false);
-		alert("アサートが発生しました。コンソールを確認してください。");
+		if(message == undefined){
+			alert("アサートが発生しました。コンソールを確認してください。");
+		} else {
+			alert("アサートが発生しました。\n" + message);
+		}
 	}
 }
 
-//値が整数かどうかを判定するメソッド
+//値が整数かどうかを判定する関数
 function isInteger(x) {
     return Math.round(x) === x;
 }

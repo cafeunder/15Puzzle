@@ -51,13 +51,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="web\board.js" />
+    <Content Include="web\play\board.js" />
     <Content Include="web\cjsUtil.js" />
     <Content Include="web\fileManager.js" />
     <Content Include="web\index.html" />
     <Content Include="web\keyboard.js" />
     <Content Include="web\mouse.js" />
-    <Content Include="web\piece.js" />
+    <Content Include="web\play\piece.js" />
+    <Content Include="web\play\gamePlayScene.js" />
     <Content Include="web\program.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -66,11 +67,14 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="web\scene.js" />
+    <Content Include="web\sceneManager.js" />
     <Content Include="web\util.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

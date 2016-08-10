@@ -1,10 +1,7 @@
 ﻿"use strict";
 
-function Board(picture, xNum, yNum, containerDepth){
-	//ボードのオブジェクトを管理するコンテナを作成
-	this.__container = new createjs.Container();
-	gStage.addChild(this.__container);
-	gStage.setChildIndex(this.__container, containerDepth);
+function Board(picture, xNum, yNum, container){
+	this.__container = container;
 
 	//ボードのサイズ
 	this.xNum = xNum;
@@ -42,11 +39,6 @@ function Board(picture, xNum, yNum, containerDepth){
 	this.shuffle(100);
 	//任意。ゲーム開始時のブランク位置を固定するなら
 	this.setBlankLowerRight();
-}
-
-//デストラクタ
-Board.prototype.finalize = function(){
-	gStage.removeChild(this.__container);
 }
 
 Board.prototype.update = function(){
