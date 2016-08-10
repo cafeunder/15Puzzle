@@ -48,7 +48,9 @@ onload = function(){
 	createjs.Ticker.setFPS(30);
 	createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
 
-	gSceneManager.change(new GamePlayScene());
+	var gp = new GamePlayScene();
+	gSceneManager.change(gp);
+	gSceneManager.add(new GameStartScene(gp));
 
 	//タイマーイベント
 	var initialized = false;

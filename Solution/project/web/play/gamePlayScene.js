@@ -6,6 +6,7 @@ function GamePlayScene(){
 
 	this.fileGroup = gFileManager.getGroup("main");
 	this.fileGroup.load();
+	this.enable = false;
 }
 Inherits(GamePlayScene, Scene);	//継承
 
@@ -30,5 +31,17 @@ GamePlayScene.prototype.finalize = function(){
 
 //更新メソッド
 GamePlayScene.prototype.update = function(){
-	this.board.update();
+	if(this.enable){
+		this.board.update();
+	}
+}
+
+//ゲームスタートするメソッド
+GamePlayScene.prototype.start = function(){
+	this.enable = true;
+
+	//シャッフル
+	this.board.shuffle(100);
+	//任意。ゲーム開始時のブランク位置を固定するなら
+	this.board.setBlankLowerRight();
 }

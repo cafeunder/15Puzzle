@@ -34,11 +34,6 @@ function Board(picture, xNum, yNum, container){
 	//右下のピースは空きとする（クリア時に表示するので画像は保持してもらう）
 	this.blankID = xNum*yNum-1; 
 	this.__pieces[this.blankID].setBlank(true);
-
-	//シャッフル
-	this.shuffle(100);
-	//任意。ゲーム開始時のブランク位置を固定するなら
-	this.setBlankLowerRight();
 }
 
 Board.prototype.update = function(){

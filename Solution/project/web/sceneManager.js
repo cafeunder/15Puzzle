@@ -1,7 +1,6 @@
 ﻿"use strict";
 
 var gSceneManager = new SceneManager();
-
 //---------------------------------------//
 //              SceneManager             //
 //---------------------------------------//
@@ -49,7 +48,7 @@ SceneManager.prototype.update = function(){
 		//アクティブシーン配列から削除
 		for(var j = 0; j < this.__activeScenes.length; j++){
 			if(this.__finalizeScenes[i] == this.__activeScenes[j]){
-				this.__activeScenes.spilice(j, 1);
+				this.__activeScenes.splice(j, 1);
 			}
 		}
 	}
@@ -68,4 +67,14 @@ SceneManager.prototype.change = function(scene){
 
 	//シーンを追加する
 	this.__preparingScenes.push(scene);
+}
+
+//シーンを追加するメソッド
+SceneManager.prototype.add = function(scene){
+	this.__preparingScenes.push(scene);
+}
+
+//シーンを破棄するメソッド
+SceneManager.prototype.remove = function(scene){
+	this.__finalizeScenes.push(scene);
 }
