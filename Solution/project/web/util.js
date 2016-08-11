@@ -24,7 +24,7 @@ function isInteger(x) {
 
 //配列をディープコピーする関数
 function copyArray(arr){
-	if(Array.isArray(arr)){ return null; }
+	if(!Array.isArray(arr)){ return null; }
 
 	var newarr = new Array();
 	for(var i = 0; i < arr.length; i++){

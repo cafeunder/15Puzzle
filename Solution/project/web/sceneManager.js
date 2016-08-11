@@ -78,3 +78,8 @@ SceneManager.prototype.add = function(scene){
 SceneManager.prototype.remove = function(scene){
 	this.__finalizeScenes.push(scene);
 }
+
+//シーンの深度をセットするメソッド
+SceneManager.prototype.setDepth = function(scene){
+	
+}

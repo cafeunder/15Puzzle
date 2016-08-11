@@ -14,7 +14,6 @@ onload = function(){
 	//キーボードオブジェクトの生成
 	keyboardInitialize();
 
-
 	//タッチデバイスかどうか
 	if(createjs.Touch.isSupported() == true){
 		//タッチデバイスの有効化（引数はステージオブジェクト）
@@ -62,7 +61,9 @@ onload = function(){
 		//keyboardアップデート
 		gKeyboard.update();
 
+
 		gSceneManager.update();
+
 
 		if(gKeyboard.getKeyCount(KEY_CODE_F) == 1){
 			fpsLabel.visible = !fpsLabel.visible;
@@ -74,15 +75,3 @@ onload = function(){
 		gStage.update();
 	});
 };
-
-function copyArray(arr){
-	var newarr = [];
-	for(var i = 0; i < arr.length; i++){
-		if(Array.isArray(arr[i])){
-			newarr[i] = copyArray(arr[i]);
-		} else {
-			newarr[i] = arr[i];
-		}
-	}
-	return newarr;
-}
