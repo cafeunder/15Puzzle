@@ -20,17 +20,23 @@ SceneManager.prototype.update = function(){
 	//===準備中のシーンを管理===//
 	for(var i = 0; i < this.__preparingScenes.length; i++){
 		//準備ができているなら
-		if(this.__preparingScenes[i].isReady()){
-			//初期化メソッドを呼び出して、ステージに乗せる
-			this.__preparingScenes[i].initialize();
-			gStage.addChild(this.__preparingScenes[i].__container);
-
+		var scene = this.__preparingScenes[i];
+		if(scene.isReady()){
 			//アクティブシーン配列に追加
-			this.__activeScenes.push(this.__preparingScenes[i]);
+			this.__activeScenes.push(scene);
+			//配列のインデックス+1をdepthに指定
+			scene.__container.depth = this.__activeScenes.length;
 
 			//準備中シーン配列から削除
 			this.__preparingScenes.splice(i, 1);
 			i--;
+
+			//ステージに乗せて、初期化メソッドを呼び出す
+			gStage.addChild(scene.__container);
+			scene.initialize();
+
+			//ステージの階層をソート
+			SortStageDepth();
 		}
 	}
 
@@ -80,6 +86,17 @@ SceneManager.prototype.remove = function(scene){
 }
 
 //シーンの深度をセットするメソッド
-SceneManager.prototype.setDepth = function(scene){
-	
+SceneManager.prototype.setDepth = function(scene, depth){
+	var index = this.__activeScenes.indexOf(scene);
+	//今あるインデックスから削除
+	this.__activeScenes.splice(index, 1);
+	//指定されたインデックスへ追加
+	this.__activeScenes.splice(depth-1, 0, scene);
+
+	//今あるインデックス+1を深度とする
+	for(var i = 0; i < this.__activeScenes.length; i++){
+		this.__activeScenes[i].__container.depth = i+1;
+	}
+
+	SortStageDepth();
 }

@@ -54,11 +54,13 @@ GameClearScene.prototype.initialize = function(){
 	this.__container.addChild(t1);
 	this.__container.addChild(t2);
 	this.__container.addChild(t3);
+
+	gSceneManager.setDepth(this, 1);
 }
 
 //破棄メソッド
 GameClearScene.prototype.finalize = function(){
-	//何もしない
+	this.gamePlayScene.start();
 }
 
 //更新メソッド
@@ -72,6 +74,5 @@ GameClearScene.prototype.update = function(){
 
 	if(gMouse.downFrame == 1){
 		gSceneManager.remove(this);
-		this.gamePlayScene.start();
 	}
 }

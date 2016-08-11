@@ -30,11 +30,13 @@ GameStartScene.prototype.initialize = function(){
 	//コンテナに追加
 	this.__container.addChild(box);	
 	this.__container.addChild(t);
+
+	gSceneManager.setDepth(this, 1);
 }
 
 //破棄メソッド
 GameStartScene.prototype.finalize = function(){
-	//何もしない
+	this.gamePlayScene.start();
 }
 
 //更新メソッド
@@ -48,6 +50,5 @@ GameStartScene.prototype.update = function(){
 
 	if(gMouse.downFrame == 1){
 		gSceneManager.remove(this);
-		this.gamePlayScene.start();
 	}
 }

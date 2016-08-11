@@ -35,12 +35,18 @@ onload = function(){
 	backGround.graphics.beginFill("#fff");
 	//四角形とする（引数はx,y,width,height）
 	backGround.graphics.drawRect(0, 0, STAGE_WIDTH, STAGE_HEIGHT);
+	//深度を一番深く設定
+	backGround.depth = Number.POSITIVE_INFINITY;
 	//ステージに追加
 	gStage.addChild(backGround);
+
+
 
 	//fps表示
 	var fpsLabel = new createjs.Text("-- fps", "bold 18px Arial", "#000");
 	fpsLabel.visible = false;
+	//深度を一番浅く設定
+	fpsLabel.depth = 0;
 	gStage.addChild(fpsLabel);
 
 	//FPSベース
@@ -61,17 +67,26 @@ onload = function(){
 		//keyboardアップデート
 		gKeyboard.update();
 
-
+		//処理本体
 		gSceneManager.update();
 
 
-		if(gKeyboard.getKeyCount(KEY_CODE_F) == 1){
-			fpsLabel.visible = !fpsLabel.visible;
-		}
-
 		//fps計測
+		if(gKeyboard.getKeyCount(KEY_CODE_F) == 1){ fpsLabel.visible = !fpsLabel.visible; }
 		fpsLabel.text = Math.round(createjs.Ticker.getMeasuredFPS());
 
 		gStage.update();
 	});
 };
+
+//オブジェクトが持っているdepthの値で階層をソート
+//depthが無指定なら一番下になる
+function SortStageDepth(){
+	gStage.sortChildren(
+		function(a, b){
+			var aDepth = (a.depth == undefined) ? Number.POSITIVE_INFINITY : a.depth;
+			var bDepth = (b.depth == undefined) ? Number.POSITIVE_INFINITY : b.depth;
+			return bDepth - aDepth;
+		}
+	);
+}
