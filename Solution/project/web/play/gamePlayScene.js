@@ -32,12 +32,8 @@ GamePlayScene.prototype.finalize = function(){
 //更新メソッド
 GamePlayScene.prototype.update = function(){
 	if(this.enable){
+		this.board.setNumberVisible(true);
 		var clear = this.board.update();
-
-		if(clear){
-			gSceneManager.add(new GameClearScene(this, this.board.noOfMove));
-			this.enable = false;
-		}
 	}
 }
 

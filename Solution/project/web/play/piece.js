@@ -28,6 +28,7 @@ Piece.prototype.setBlank = function(flag){
 	this.view.update(this);
 }
 
+//正しい位置にいるか？
 Piece.prototype.isCorrect = function(){
 	return this.point.equals(this.__homePoint);
 }
@@ -36,34 +37,43 @@ Piece.prototype.isCorrect = function(){
 //                View                //
 //------------------------------------//
 function PieceView(bitmap, container){
-	this.bitmap = bitmap;
+	this.__bitmap = bitmap;
 	
+	//テキストの生成
+	this.__numText = new createjs.Text("/N", "48px sans-serif", "rgba(250,250,250,0.7)");
+	this.__numText.textAlign = "center";
+	this.__numText.textBaseline = "middle";
+
 	//ピースのサイズを取得
 	var bounds = bitmap.getBounds();
-	this.bmpWidth = bounds.width;
-	this.bmpHeight = bounds.height;
+	this.__bmpWidth = bounds.width;
+	this.__bmpHeight = bounds.height;
 
 	//ピースのフレームを生成
-	this.frame = new createjs.Shape();
-	this.frame.graphics.setStrokeStyle(2);
-	this.frame.graphics.beginStroke("#fff");
-	this.frame.graphics.drawRect(0, 0, this.bmpWidth, this.bmpHeight);
+	this.__frame = new createjs.Shape();
+	this.__frame.graphics.setStrokeStyle(2);
+	this.__frame.graphics.beginStroke("#fff");
+	this.__frame.graphics.drawRect(0, 0, this.__bmpWidth, this.__bmpHeight);
 
 	//コンテナに画像とフレームを追加
-	container.addChild(this.bitmap);
-	container.addChild(this.frame);
+	container.addChild(this.__bitmap);
+	container.addChild(this.__frame);
+	container.addChild(this.__numText);
 }
 
 PieceView.prototype.update = function(piece){
-	var gx = piece.point.x * this.bmpWidth;
-	var gy = piece.point.y * this.bmpHeight;
+	var gx = piece.point.x * this.__bmpWidth;
+	var gy = piece.point.y * this.__bmpHeight;
 
-	this.bitmap.x = gx;
-	this.bitmap.y = gy;
-	this.frame.x = gx;
-	this.frame.y = gy;
+	this.__bitmap.x = gx;
+	this.__bitmap.y = gy;
+	this.__frame.x = gx;
+	this.__frame.y = gy;
+	this.__numText.x = gx + this.__bmpWidth/2;
+	this.__numText.y = gy + this.__bmpHeight/2;
+	this.__numText.text = (piece.id + 1) + "";
 
 	if(piece.blank){
-		this.bitmap.visible = false;
+		this.__bitmap.visible = false;
 	}
 }
