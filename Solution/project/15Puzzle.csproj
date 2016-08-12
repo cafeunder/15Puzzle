@@ -71,6 +71,7 @@
     </Content>
     <Content Include="web\scene.js" />
     <Content Include="web\sceneManager.js" />
+    <Content Include="web\style\master.css" />
     <Content Include="web\util.js" />
   </ItemGroup>
   <ItemGroup>

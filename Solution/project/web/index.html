@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<meta name="robots" content="noindex">
-	<title>game</title>
+	<title>CreateJSで15パズル</title>
 	<meta charset="utf-8">
+	<meta name="description" content="createjsで作られた15パズルです。">
 	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
 	<script src="util.js"></script>
 	<script src="cjsUtil.js"></script>
@@ -20,30 +20,13 @@
 	<script src="play/board.js"></script>
 	<script src="program.js"></script>
 
-	<style>
-		html, body {
-			background-color: #111;
-			color: #ddd;
-			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-			text-align: center;
-		}
-		body {
-			margin:0px;padding:0px; overflow: auto;
-		}
+	<script type="text/javascript" src="style/scripts/shCore.js"></script>
+	<script type="text/javascript" src="style/scripts/shBrushJScript.js"></script>
+	<link type="text/css" rel="stylesheet" href="style/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
 
-		#mainDiv {
-			background-color: #000;
-			font-family: "ヒラギノ角ゴ Pro W3",メイリオ,Osaka,Arial,Verdana,"ＭＳ Ｐゴシック",sans-serif;
-			width:880px;
-			margin: 0 auto;
-			margin-top: 0em;
-			margin-bottom: 1em;
-			text-align: left;
-			padding: 20px 40px 50px 40px;
-			line-height: 180%;
-			letter-spacing: 0.08em;
-		}
-		
+	<link rel="stylesheet" type="text/css" href="style/master.css">
+	<style>
 		#canvasContainer {
 			margin: 1em auto;
 		}		
@@ -52,6 +35,52 @@
 <body>
 	<div id="canvasContainer">
 		<canvas id="myCanvas" width="480" height="480"></canvas>
+	</div>
+	<div id="mainDiv">
+		<h3>HOW TO PLAY</h3>
+		クリックするとゲームが始まります。<br>
+		空いているマスに隣接するピースは、クリックすることでスライドできます。<br>
+		ピースを並べ替えることで、絵を完成させればゲームクリアです。<br>
+		<h3>ENGINEERING NOTES</h3>
+		このプログラムはCreateJSを使って実装されています。<br>
+		ソースコードはGitHubで公開しているので、ご自由にお使いください。<br>
+		<a href="https://github.com/cafeunder/15Puzzle" target="_blank">https://github.com/cafeunder/15Puzzle</a><br>
+		<h4>読み込んだ画像を分割してBitmap化</h4>
+		ピースの画像は、一枚の元画像を分割して生成しています。以下のサイトを参考に実装しました。<br>
+		<a href="http://pops-web.com/main/pops/archives/247" target="_blank">CreateJS 画像をトリミング(又は分割)してBitmap処理、Tweenさせる処理を考える - POPS WEB KOUBOU</a><br><br />
+		Bitmapオブジェクトの画像をトリミングし、新しいBitmapオブジェクトとする関数を以下に示します。<br>
+		<pre class="brush: jscript; toolbar: false;">
+			//Bitmapから一部を切り取って新しいBitmapを作る関数
+			function clipBitmap(bitmap, clipX, clipY, clipWidth, clipHeight){
+				var img = bitmap.image;
+
+				//context化のためのcanvasを新しく生成する
+				var clipCanvas = document.createElement("canvas");
+				clipCanvas.setAttribute("width",clipWidth);
+				clipCanvas.setAttribute("height",clipHeight);
+
+				//contextを取得
+				var context = clipCanvas.getContext("2d");
+
+				//描画
+				context.drawImage(
+					img, 
+					clipX, clipY, clipWidth, clipHeight,
+					0, 0, clipWidth, clipHeight
+				);
+
+				//Bitmapを生成
+				return new createjs.Bitmap(clipCanvas);
+			}		</pre>
+			<h3>更新履歴</h3>
+			2016/08/13　ページ公開<br>
+			<h3>管理者</h3>
+			かふぇした(cafeunder)<br>
+			twitter：<a href="https://twitter.com/cafeunder" target="_blank">@cafeunder</a><br>
+			※このページに関するメールでのご連絡は受けつけておりません。
+	</div>
+	<div id="copyright">
+		copyright(C) 2016 cafeunder<br><br>
 	</div>
 </body>
 </html>
