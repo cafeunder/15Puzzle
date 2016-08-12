@@ -28,6 +28,18 @@ onload = function(){
 	STAGE_WIDTH = gStage.canvas.width;
 	STAGE_HEIGHT = gStage.canvas.height;
 
+	//=====クリック検出領域の生成=====//
+	//ヒットエリアの生成
+	var hitArea = new createjs.Shape();
+	//アタリ領域を表す四角形を生成
+	hitArea.graphics = new createjs.Graphics().beginFill("#FFF").drawRect(0,0,STAGE_WIDTH, STAGE_HEIGHT);
+
+	//ヒットエリアオブジェクトの生成
+	var hitAreaBox = new createjs.Shape();
+	hitAreaBox.hitArea = hitArea;
+	hitAreaBox.depth = 0;
+	gStage.addChild(hitAreaBox);
+
 	//=====システム背景の生成=====//
 	//シェイプオブジェクトの生成
 	var backGround = new createjs.Shape();
