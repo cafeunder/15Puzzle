@@ -75,5 +75,7 @@ PieceView.prototype.update = function(piece){
 
 	if(piece.blank){
 		this.__bitmap.visible = false;
+		this.__frame.visible = false;
+		this.__numText.visible = false;
 	}
 }

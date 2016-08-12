@@ -1,7 +1,14 @@
 ﻿"use strict";
 
 function Board(picture, xNum, yNum, container){
-	this.__container = container;
+	//元画像を非表示でコンテナに追加
+	this.__picture = picture;
+	this.__picture.visible = false;
+	container.addChild(this.__picture);
+
+	//ピースを格納するコンテナを生成
+	this.__container = new createjs.Container();
+	container.addChild(this.__container);
 
 	//動かした回数
 	this.noOfMove = 0;
@@ -140,5 +147,15 @@ Board.prototype.setBlankLowerRight = function(){
 	//一番右に行くまで
 	while(blank.point.x != this.xNum-1){
 		this.swap(this.__pieces[this.blankID], POINT_RIGHT);
+	}
+}
+
+Board.prototype.originalPictureShow = function(show){
+	if(show){
+		this.__picture.visible = true;
+		this.__container.visible = false;
+	} else {
+		this.__picture.visible = false;
+		this.__container.visible = true;	
 	}
 }

@@ -40,8 +40,6 @@ onload = function(){
 	//ステージに追加
 	gStage.addChild(backGround);
 
-
-
 	//fps表示
 	var fpsLabel = new createjs.Text("-- fps", "bold 18px Arial", "#000");
 	fpsLabel.visible = false;
