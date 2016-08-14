@@ -32,15 +32,13 @@ GamePlayScene.prototype.finalize = function(){
 //更新メソッド
 GamePlayScene.prototype.update = function(){
 	if(this.enable){
-		this.board.originalPictureShow(false);
 		var clear = this.board.update();
 
 		if(clear){
 			gSceneManager.add(new GameClearScene(this, this.board.noOfMove));
 			this.enable = false;
+			this.board.originalPictureShow(true);
 		}
-	} else {
-		this.board.originalPictureShow(true);
 	}
 }
 
@@ -52,4 +50,6 @@ GamePlayScene.prototype.start = function(){
 	this.board.shuffle(100);
 	//任意。ゲーム開始時のブランク位置を固定するなら
 	this.board.setBlankLowerRight();
+
+	this.board.originalPictureShow(false);
 }
